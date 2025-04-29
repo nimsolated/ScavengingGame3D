@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://wpqhjo3js4iy"]
+
+[ext_resource type="Texture2D" uid="uid://d3dcv0bp4sece" path="res://assets/lightgreennoise.png" id="1_6ulkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwxtu"]
+albedo_color = Color(0.270222, 0.270222, 0.270222, 1)
+albedo_texture = ExtResource("1_6ulkd")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_iwxtu"]
+material = SubResource("StandardMaterial3D_iwxtu")
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iwxtu"]
+data = PackedVector3Array(-10, 0.05, 10, 10, 0.05, 10, -10, -0.05, 10, 10, 0.05, 10, 10, -0.05, 10, -10, -0.05, 10, 10, 0.05, -10, -10, 0.05, -10, 10, -0.05, -10, -10, 0.05, -10, -10, -0.05, -10, 10, -0.05, -10, 10, 0.05, 10, 10, 0.05, -10, 10, -0.05, 10, 10, 0.05, -10, 10, -0.05, -10, 10, -0.05, 10, -10, 0.05, -10, -10, 0.05, 10, -10, -0.05, -10, -10, 0.05, 10, -10, -0.05, 10, -10, -0.05, -10, 10, 0.05, 10, -10, 0.05, 10, 10, 0.05, -10, -10, 0.05, 10, -10, 0.05, -10, 10, 0.05, -10, -10, -0.05, 10, 10, -0.05, 10, -10, -0.05, -10, 10, -0.05, 10, 10, -0.05, -10, -10, -0.05, -10)
+
+[node name="TestMap" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_iwxtu")
+
+[node name="Coll" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("ConcavePolygonShape3D_iwxtu")
