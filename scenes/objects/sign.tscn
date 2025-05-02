@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://caala56oo3a04"]
+
+[ext_resource type="Script" uid="uid://lrk1yydtxb8q" path="res://scripts/interactables/sign.gd" id="1_010yf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n0ijn"]
+size = Vector3(0.02, 0.1, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_010yf"]
+size = Vector3(0.1, 0.06, 0.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0ijn"]
+size = Vector3(0.1, 0.125342, 0.02)
+
+[node name="Sign" type="StaticBody3D"]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1_010yf")
+
+[node name="StandMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_n0ijn")
+
+[node name="SignMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0947368, 0)
+mesh = SubResource("BoxMesh_010yf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0628891, 0)
+shape = SubResource("BoxShape3D_n0ijn")
+
+[node name="SignLabel" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.199468, 0)
+billboard = 1
+texture_filter = 0
+text = "Cheese"
+font_size = 16
+outline_size = 8
+
+[node name="CooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true

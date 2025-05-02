@@ -1,4 +1,4 @@
 extends State
 
 func _update() -> void:
-	print("I'm walking!")
+	print("I'm using!")

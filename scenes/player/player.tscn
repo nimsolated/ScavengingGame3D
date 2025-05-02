@@ -1,32 +1,43 @@
-[gd_scene load_steps=9 format=3 uid="uid://cox65vq71msd0"]
+[gd_scene load_steps=11 format=3 uid="uid://cox65vq71msd0"]
 
 [ext_resource type="Script" uid="uid://dpn75pmvmuki7" path="res://scripts/player/player.gd" id="1_8afob"]
 [ext_resource type="Script" uid="uid://beuogpwk4sljs" path="res://scripts/states/state_machine.gd" id="2_dovo2"]
+[ext_resource type="ArrayMesh" uid="uid://btssaoe6ij7oy" path="res://resources/player_mesh.mesh" id="2_qek5x"]
 [ext_resource type="Script" uid="uid://ef1mxydv8ira" path="res://scripts/states/idle.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://bd7yu4bv88ah2" path="res://scripts/states/walking.gd" id="4_lvxji"]
-[ext_resource type="Script" uid="uid://dfrvnd7xhytj5" path="res://scripts/states/detecting.gd" id="5_p47bc"]
-[ext_resource type="Script" uid="uid://cmgkho6vnvtog" path="res://scripts/states/digging.gd" id="6_75vfm"]
+[ext_resource type="Script" uid="uid://dfrvnd7xhytj5" path="res://scripts/states/using.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://cmgkho6vnvtog" path="res://scripts/states/interacting.gd" id="6_75vfm"]
+[ext_resource type="Script" uid="uid://cvys3mp37i37g" path="res://scripts/states/airborne.gd" id="7_0owmy"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_o5qli"]
-radius = 0.45
+[sub_resource type="BoxShape3D" id="BoxShape3D_qek5x"]
+size = Vector3(0.365967, 0.0991455, 0.377197)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
-radius = 0.45
+[sub_resource type="BoxShape3D" id="BoxShape3D_5gtgg"]
+size = Vector3(0.0637207, 0.124878, 0.0638428)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("states")]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_8afob")
 states = NodePath("States")
 
+[node name="InteractArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Coll" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.0504272, -0.000366211)
+shape = SubResource("BoxShape3D_qek5x")
+
 [node name="MeshInst" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_o5qli")
+mesh = ExtResource("2_qek5x")
 
 [node name="Coll" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_o5qli")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207, 0.0620728, 0.000305176)
+shape = SubResource("BoxShape3D_5gtgg")
 
 [node name="Cam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 8, 5)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.5, 0.35)
 
 [node name="States" type="Node" parent="."]
 script = ExtResource("2_dovo2")
@@ -37,8 +48,11 @@ script = ExtResource("3_gmlin")
 [node name="Walking" type="Node" parent="States"]
 script = ExtResource("4_lvxji")
 
-[node name="Detecting" type="Node" parent="States"]
+[node name="Airborne" type="Node" parent="States"]
+script = ExtResource("7_0owmy")
+
+[node name="Using" type="Node" parent="States"]
 script = ExtResource("5_p47bc")
 
-[node name="Digging" type="Node" parent="States"]
+[node name="Interacting" type="Node" parent="States"]
 script = ExtResource("6_75vfm")
