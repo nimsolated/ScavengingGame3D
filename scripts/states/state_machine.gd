@@ -3,7 +3,7 @@ class_name StateMachine extends Node
 func _physics_process(delta: float) -> void:
 	for i: State in get_children():
 		if i.isActive:
-			i._update()
+			i._update(delta)
 
 func enterState(stateName: StringName) -> bool:
 	if get_children().is_empty():

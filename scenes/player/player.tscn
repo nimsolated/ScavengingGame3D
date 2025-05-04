@@ -15,11 +15,10 @@ size = Vector3(0.365967, 0.0991455, 0.377197)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5gtgg"]
 size = Vector3(0.0637207, 0.124878, 0.0638428)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("states")]
+[node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_8afob")
-states = NodePath("States")
 
 [node name="InteractArea" type="Area3D" parent="."]
 collision_layer = 0
@@ -42,17 +41,33 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.5, 0.
 [node name="States" type="Node" parent="."]
 script = ExtResource("2_dovo2")
 
-[node name="Idle" type="Node" parent="States"]
+[node name="Idle" type="Node" parent="States" node_paths=PackedStringArray("walkingState", "airborneState", "usingState", "interactingState", "player")]
 script = ExtResource("3_gmlin")
+walkingState = NodePath("../Walking")
+airborneState = NodePath("../Airborne")
+usingState = NodePath("../Using")
+interactingState = NodePath("../Interacting")
+player = NodePath("../..")
+isActive = true
 
-[node name="Walking" type="Node" parent="States"]
+[node name="Walking" type="Node" parent="States" node_paths=PackedStringArray("idleState", "airborneState", "player")]
 script = ExtResource("4_lvxji")
+idleState = NodePath("../Idle")
+airborneState = NodePath("../Airborne")
+player = NodePath("../..")
 
-[node name="Airborne" type="Node" parent="States"]
+[node name="Airborne" type="Node" parent="States" node_paths=PackedStringArray("idleState", "walkingState", "player")]
 script = ExtResource("7_0owmy")
+idleState = NodePath("../Idle")
+walkingState = NodePath("../Walking")
+player = NodePath("../..")
 
-[node name="Using" type="Node" parent="States"]
+[node name="Using" type="Node" parent="States" node_paths=PackedStringArray("idleState", "player")]
 script = ExtResource("5_p47bc")
+idleState = NodePath("../Idle")
+player = NodePath("../..")
 
-[node name="Interacting" type="Node" parent="States"]
+[node name="Interacting" type="Node" parent="States" node_paths=PackedStringArray("idleState", "player")]
 script = ExtResource("6_75vfm")
+idleState = NodePath("../Idle")
+player = NodePath("../..")

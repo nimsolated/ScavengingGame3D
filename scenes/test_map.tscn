@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://wpqhjo3js4iy"]
+[gd_scene load_steps=6 format=3 uid="uid://wpqhjo3js4iy"]
 
 [ext_resource type="Texture2D" uid="uid://d3dcv0bp4sece" path="res://assets/lightgreennoise.png" id="1_6ulkd"]
+[ext_resource type="PackedScene" uid="uid://cox65vq71msd0" path="res://scenes/player/player.tscn" id="2_fn2sa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwxtu"]
 albedo_color = Color(0.270222, 0.270222, 0.270222, 1)
@@ -21,8 +22,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 collision_mask = 0
 
 [node name="MeshInst" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 mesh = SubResource("BoxMesh_iwxtu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("BoxShape3D_6ulkd")
+
+[node name="Player" parent="." instance=ExtResource("2_fn2sa")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2, 0)

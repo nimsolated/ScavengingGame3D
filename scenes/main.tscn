@@ -9,8 +9,6 @@
 [node name="Beach" parent="." instance=ExtResource("1_0wfyh")]
 
 [node name="Player" parent="Beach" instance=ExtResource("2_0wfyh")]
-moveSpeed = 1.0
-gravity = 4.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Beach"]
 transform = Transform3D(0.965926, 0.12941, -0.224144, 0, 0.866025, 0.5, 0.258819, -0.482963, 0.836516, 2.36714, -1.47303, -2.47598)
@@ -21,5 +19,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0411739, -1.19209e-07, -0.4
 text = "Hello, block of cheese!"
 
 [node name="Sign2" parent="." instance=ExtResource("3_sugp2")]
-transform = Transform3D(0.508501, 0, -0.861062, 0, 1, 0, 0.861062, 0, 0.508501, 0.237371, -1.19209e-07, -0.45127)
+transform = Transform3D(0.508501, 0, -0.861062, 0, 1, 0, 0.861062, 0, 0.508501, 0.237371, -1.19209e-07, -0.192118)
 text = "Welcome to beach!"
